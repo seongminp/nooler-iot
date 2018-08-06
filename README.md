@@ -1,9 +1,6 @@
 # nooler-iot
 Code to run on the ground
 
-# nooler-iot
-Code to run on the ground
-
 ## State Machine Description
 
 #### Constants
