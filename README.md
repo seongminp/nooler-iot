@@ -13,7 +13,7 @@ Code to run on the ground
 - `bool` `SETUP_COMPLETE`
 - `char*` `WIFI_SSID` - Wifi SSID
 - `char*` `WIFI_PW` - Wifi password
-- `int` `OPEATION_MODE`.
+- `int` `OPEATION_MODE` - Either `MODE_BLE` or `MODE_WIFI`.
 
 #### States 
 
