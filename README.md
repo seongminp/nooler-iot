@@ -27,110 +27,35 @@ Code to run on the ground
 #### States 
 
 #### `INIT`
-###### flags
-`LOCAL_SETUP_COMPLETE = false`
-
-`SERVER_REGISTRATION_COMPLETE = false`
-
-`BLE_WAITING = false`
-
-`BLE_CONNECTED = false`
-
-`WIFI_CONNECTING = false`
-
-`WIFI_CONNECTED = false`
-
-###### entry
   - `Serial.begin(115200)`
   - Init BLE server
   - Init Wifi
   - Init reset/pair button
 
 #### `WAITING_BLE`
-###### flags
-`LOCAL_SETUP_COMPLETE = false`
-
-`SERVER_REGISTRATION_COMPLETE = false`
-
-`BLE_WAITING = true`
-
-`BLE_CONNECTED = false`
-
-`WIFI_CONNECTING = false`
-
-`WIFI_CONNECTED = false`
-
-###### entry
 - Start advertising BLE server.
 
 #### `USER_PAIRED`
-###### flags
-`LOCAL_SETUP_COMPLETE = false`
-
-`SERVER_REGISTRATION_COMPLETE = false`
-
-`BLE_WAITING = false`
-
-`BLE_CONNECTED = true`
-
-`WIFI_CONNECTING = false`
-
-`WIFI_CONNECTED = false`
-
-###### entry
 - Receive data(user uuid, Wifi information, etc.) from user through BLE.
 
 #### `WAITING_WIFI`
-###### flags
-`LOCAL_SETUP_COMPLETE = true`
-
-`SERVER_REGISTRATION_COMPLETE = false`
-
-`BLE_WAITING = false`
-
-`BLE_CONNECTED = false`
-
-`WIFI_CONNECTING = true`
-
-`WIFI_CONNECTED = false`
-
-###### entry
-- Attempt to connect to provided wifi.
+- Attempt to connect to provided Wifi.
 
 #### `WAITING_SERVER_SETUP`
-###### flags
-`LOCAL_SETUP_COMPLETE = true`
-
-`SERVER_REGISTRATION_COMPLETE = false`
-
-`BLE_WAITING = false`
-
-`BLE_CONNECTED = false`
-
-`WIFI_CONNECTING = false`
-
-`WIFI_CONNECTED = true`
-
-###### entry
 - Sync with server.
 - Subscribe to MQTT.
 
-
 #### `OPERATIONAL`
-###### flags
-`LOCAL_SETUP_COMPLETE = true`
 
-`SERVER_REGISTRATION_COMPLETE = true`
-
-`BLE_WAITING = false`
-
-`BLE_CONNECTED = false`
-
-`WIFI_CONNECTING = false`
-
-`WIFI_CONNECTED = true`
-
-###### entry
+#### Flags
+|               |`INIT`|`WAITING_BLE`|`USER_PAIRED`|`WAITING_WIFI`|`WAITING_SERVER_SETUP`|`OPERATIONAL`|
+| ----------------------         |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| `LOCAL_SETUP_COMPLETE`         |`false`|`false`|`false`|`true` |`true` |`true` |
+| `SERVER_REGISTRATION_COMPLETE` |`false`|`false`|`false`|`false`|`false`|`true`|
+| `BLE_WAITING`                  |`false`|`true` |`false`|`false`|`false`|`false`|
+| `BLE_CONNECTED`                |`false`|`false`|`true` |`false`|`false`|`false`|
+| `WIFI_CONNECTING`              |`false`|`false`|`false`|`true` |`false`|`false`|
+| `WIFI_CONNECTED`               |`false`|`false`|`false`|`false`|`true` |`true` |
 
 
 
