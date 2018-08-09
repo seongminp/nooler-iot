@@ -9,6 +9,10 @@ FSM::FSM() {
   currentState = Init;
 }
 
+void FSM::update() {
+  setInput(currentInput);
+}
+
 Input FSM::newInput(bool reset, bool goToPairingMode, bool localSetupComplete,
                     bool serverRegistrationComplete, bool bleWaiting,
                     bool bleConnected, bool wifiConnecting, bool wifiConnected) {
@@ -50,7 +54,7 @@ State FSM::determineNextState(State currState, Input currInput) {
     case Init: 
       if (currInput.localSetupComplete) {
         return WaitingWifi;
-      } else {
+      } else if (currInput.bleWaiting) {
         return WaitingBLE;
       }
 
@@ -61,7 +65,7 @@ State FSM::determineNextState(State currState, Input currInput) {
       break;
 
     case UserPaired: 
-      if (currInput.localSetupComplete) {
+      if (currentInput.localSetupComplete) {
         return WaitingWifi;
       }
       break;
@@ -90,7 +94,7 @@ State FSM::determineNextState(State currState, Input currInput) {
       // Check if local configuration is complete.
       if (!currInput.localSetupComplete) {
         if (currInput.bleConnected) {
-          return UserPaired ;
+          return UserPaired;
         } else {
           return WaitingBLE;
         }

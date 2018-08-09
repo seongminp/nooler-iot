@@ -51,6 +51,7 @@ class FSM {
     State currentState;
     Output currentOutput;
     FSM();
+    void update();
     Input newInput(bool reset, bool goToPairingMode, bool localSetupComplete,
                    bool serverRegistrationComplete, bool bleWaiting,
                    bool bleConnected, bool wifiConnecting, bool wifiConnected);            
